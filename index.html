@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swSearch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Star Wars Search</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Heebo|Russo+One" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+    <div ng-controller="SearchController as sc">
+        <header>
+            <div class="wrapper">
+                <h1>Star Wars Search</h1>
+                <p>
+                    Utilizing swapi.co, this Star Wars search is setup to find any person, starship or planet in the Star Wars universe.
+                </p>
+            </div>
+        </header>
+        <section class="search">
+            <div class="wrapper">
+                <input type="text" ng-model="sc.searchText" />
+                <button ng-click="sc.search(sc.searchText)">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </section>
+        <section class="content">
+            <div class="wrapper">
+                <p ng-show="!sc.results[0].length && !sc.results[1].length && !sc.results[2].length">
+                    These aren't the results you're looking for.
+                </p>
+                <tile type="people" data="data" ng-repeat="data in sc.results[0]" ng-show="sc.results[0].length"></tile>
+                <tile type="starship" data="data" ng-repeat="data in sc.results[1]" ng-show="sc.results[1].length"></tile>
+                <tile type="planet" data="data" ng-repeat="data in sc.results[2]" ng-show="sc.results[2].length"></tile>
+            </div>
+        </section>
+        <footer>
+            <p>
+                Thank you for your consideration!
+            </p>
+        </footer>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- <script src="node_modules/angular/angular.js"></script> -->
+    <script src="js/app.js"></script>
+</body>
+</html>
